@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.service.GreetingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +48,7 @@ public class GreetingControllerTest {
     @Test
     @DisplayName("Should return greeting with default name")
     public void testGreetingEndpointWithDefaultName() throws Exception {
-        mockMvc.perform(get("/greeting"))
+        mockMvc.perform(get("/springboot-learning/greeting"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello")))
                 .andExpect(content().string(containsString("User")));
@@ -61,7 +60,7 @@ public class GreetingControllerTest {
     @Test
     @DisplayName("Should return greeting with custom name")
     public void testGreetingEndpointWithCustomName() throws Exception {
-        mockMvc.perform(get("/greeting?name=Spring"))
+        mockMvc.perform(get("/springboot-learning/greeting?name=Spring"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello, Spring")))
                 .andExpect(content().string(containsString("Welcome")));
@@ -73,7 +72,7 @@ public class GreetingControllerTest {
     @Test
     @DisplayName("Should return application status")
     public void testStatusEndpoint() throws Exception {
-        mockMvc.perform(get("/greeting/status"))
+        mockMvc.perform(get("/springboot-learning/greeting/status"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("running")));
     }
@@ -87,7 +86,7 @@ public class GreetingControllerTest {
         String[] names = {"Alice", "Bob", "Charlie"};
 
         for (String name : names) {
-            mockMvc.perform(get("/greeting?name=" + name))
+            mockMvc.perform(get("/springboot-learning/greeting?name=" + name))
                     .andExpect(status().isOk())
                     .andExpect(content().string(containsString(name)));
         }
